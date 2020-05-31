@@ -1,0 +1,29 @@
+
+#mysql_user_home: /root
+#mysql_user_name: root
+#mysql_user_password: Password
+
+mysql_root_home: /root
+mysql_root_username: root
+mysql_root_password: password
+
+mysql_root_password_update: true
+
+mysql_enabled_on_startup: true
+
+pre_tasks:
+  - name: Install the MySQL repo.
+    yum:
+      name: https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+      state: present
+    when: ansible_os_family == "RedHat"
+
+  - name: Override variables for MySQL (RedHat).
+    set_fact:
+      mysql_daemon: mysqld
+      mysql_packages: ['mysql-server']
+      mysql_log_error: /var/log/mysqld.err
+      mysql_syslog_tag: mysqld
+      mysql_pid_file: /var/run/mysqld/mysqld.pid
+      mysql_socket: /var/lib/mysql/mysql.sock
+    when: ansible_os_family == "RedHat"

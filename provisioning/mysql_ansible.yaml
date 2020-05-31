@@ -1,0 +1,11 @@
+---
+- name: MySql Installation by Ansible
+  become: true
+  hosts: localhost
+  vars_files:
+    - mysql_vars.yaml
+
+  tasks:
+
+  - name: MySql Installation Tasks
+    include_tasks: mysql_tasks.yaml

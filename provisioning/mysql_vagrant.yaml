@@ -1,0 +1,11 @@
+---
+- name: MySql Installation by Vagrant/Ansible
+  become: true
+  hosts: all
+  vars_files:
+    - mysql_vars.yaml
+
+  tasks:
+
+  - name: MySql Installation Tasks
+    include_tasks: mysql_tasks.yaml

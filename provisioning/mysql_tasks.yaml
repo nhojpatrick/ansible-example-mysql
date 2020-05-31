@@ -1,0 +1,5 @@
+---
+
+- name: Install mysql
+  include_role:
+    name: geerlingguy.mysql
